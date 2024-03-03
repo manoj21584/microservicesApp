@@ -1,0 +1,32 @@
+package leetcode;
+
+import java.util.HashSet;
+import java.util.Set;
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character>set=new HashSet<>();
+        int k=0;
+        int maxi=0;
+        for(char c:s.toCharArray()){
+            if(!set.contains(c)){
+                set.add(c);
+                k++;
+            }
+            else{
+                maxi=Math.max(k,maxi);
+                set.removeAll(set);
+                k=0;
+                set.add(c);
+            }
+        }
+		return maxi;
+        
+    }
+    public static void main(String[] args) {
+    	Solution  solution=new Solution();
+    	String s="abcabcbb";
+    	int res=solution.lengthOfLongestSubstring(s);
+    	System.out.println(res);
+    }
+}

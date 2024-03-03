@@ -1,0 +1,5 @@
+package com.springmicro.departmentservice.service;
+
+public interface DepartmentService {
+
+}

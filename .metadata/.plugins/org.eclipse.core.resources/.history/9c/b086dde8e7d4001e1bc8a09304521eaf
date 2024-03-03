@@ -1,0 +1,5 @@
+package com.springmicro.employeeservice.repository;
+
+public interface EmployeeRepository {
+
+}

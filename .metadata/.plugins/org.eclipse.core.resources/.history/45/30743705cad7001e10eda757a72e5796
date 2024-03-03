@@ -1,0 +1,47 @@
+package leetcode;
+
+import java.util.HashSet;
+import java.util.Set;
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+    	if (s == " " ) {
+            return 1; // Return 0 if the input string is null or empty
+        }
+        Set<Character>set=new HashSet<>();
+        int k=0;
+        int maxi=0;
+        for(char c:s.toCharArray()){
+            if(!set.contains(c)){
+                set.add(c);
+                k++;
+            }
+            else{
+                maxi=Math.max(k,maxi);
+                set.removeAll(set);
+                k=0;
+                set.add(c);
+                k++;
+            }
+        }
+		return maxi;
+        
+    }
+    public static void main(String[] args) {
+    	Solution  solution=new Solution();
+//    	String s="abcabcbb";
+    	String s=" ";
+//    	String s = "pwwkew";
+    	int res=solution.lengthOfLongestSubstring(s);
+    	System.out.println(res);
+    	
+    	int nums1  []= {1,2};
+    	int nums2[]= {3,3};
+    	int nums[]=new int [nums1.length+nums2.length];
+    	System.arraycopy(nums1, 0, nums, 0, nums1.length);
+    	System.arraycopy(nums2, 0, nums, 0, nums2.length);
+    	System.out.println(nums.length);
+    	String types=nums.length%2==0?"even":"odd";
+        System.out.println(types);
+    }
+}

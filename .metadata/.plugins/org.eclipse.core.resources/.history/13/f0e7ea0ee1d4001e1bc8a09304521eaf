@@ -1,0 +1,5 @@
+package com.springmicro.departmentservice.entity;
+
+public class Department {
+
+}

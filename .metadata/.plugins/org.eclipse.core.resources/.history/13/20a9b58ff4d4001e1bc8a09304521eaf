@@ -1,0 +1,52 @@
+package com.springmicro.employeeservice.service.impl;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.client.RestTemplate;
+
+import com.springmicro.employeeservice.dto.EmployeeDto;
+import com.springmicro.employeeservice.entity.Employee;
+import com.springmicro.employeeservice.exception.ResourceNotFoundException;
+import com.springmicro.employeeservice.repository.EmployeeRepository;
+import com.springmicro.employeeservice.service.EmployeeService;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+	private EmployeeRepository employeeRepository;
+	private RestTemplate restTemplate;
+
+	public EmployeeServiceImpl(EmployeeRepository employeeRepository, RestTemplate restTemplate) {
+		this.employeeRepository = employeeRepository;
+		this.restTemplate = restTemplate;
+	}
+
+	
+
+	@Override
+	public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
+		Employee employee = new Employee(employeeDto.getId(), employeeDto.getFirstName(), employeeDto.getLastName(),
+				employeeDto.getEmail(), employeeDto.getDepartmentCode());
+		Employee saveEmployee = employeeRepository.save(employee);
+		EmployeeDto saveEmployeeDto = new EmployeeDto(saveEmployee.getId(), saveEmployee.getFirstName(),
+				saveEmployee.getLastName(), saveEmployee.getEmail(), saveEmployee.getDepartmentCode());
+		return saveEmployeeDto;
+	}
+
+	@Override
+	public EmployeeDto getByEmail(String email) {
+		Employee saveEmployee = employeeRepository.findByEmail(email);
+		EmployeeDto saveEmployeeDto = new EmployeeDto(saveEmployee.getId(), saveEmployee.getFirstName(),
+				saveEmployee.getLastName(), saveEmployee.getEmail(), saveEmployee.getDepartmentCode());
+		return saveEmployeeDto;
+	}
+
+	@Override
+	public EmployeeDto getById(long id) throws Exception {
+		Employee saveEmployee = employeeRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("resource with given id:"+id+"not found"));
+		EmployeeDto saveEmployeeDto = new EmployeeDto(saveEmployee.getId(), saveEmployee.getFirstName(),
+				saveEmployee.getLastName(), saveEmployee.getEmail(), saveEmployee.getDepartmentCode());
+		return saveEmployeeDto;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.springmicro.departmentservice.repository;
+
+public interface DepartmentRepository {
+
+}

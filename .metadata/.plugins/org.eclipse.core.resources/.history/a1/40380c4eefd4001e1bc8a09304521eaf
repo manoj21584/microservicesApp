@@ -1,0 +1,5 @@
+package com.springmicro.employeeservice.dto;
+
+public class DepartmentDto {
+
+}

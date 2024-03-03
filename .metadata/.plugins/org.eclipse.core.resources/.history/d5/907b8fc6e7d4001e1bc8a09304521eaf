@@ -1,0 +1,5 @@
+package com.springmicro.employeeservice.entity;
+
+public class Employee {
+
+}

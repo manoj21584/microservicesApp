@@ -1,0 +1,5 @@
+package com.springmicro.employeeservice.service;
+
+public interface APIClient {
+
+}

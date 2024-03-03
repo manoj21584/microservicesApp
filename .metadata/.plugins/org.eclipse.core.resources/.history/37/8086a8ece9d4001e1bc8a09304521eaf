@@ -1,0 +1,5 @@
+package com.springmicro.employeeservice.controller;
+
+public class EmployeeController {
+
+}
